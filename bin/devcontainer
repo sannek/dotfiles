@@ -1,0 +1,31 @@
+#!bin/sh
+
+# Git Completions
+#
+if [ ! -d ~/.zsh ]
+then
+  mkdir ~/.zsh
+fi
+
+if [ ! -f ~/.zsh/_git ]
+then
+  curl -o ~/.zsh/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+  curl -o ~/.zsh/_git https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
+fi
+
+if [ ! -d ~/.oh-my-zsh ]
+then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+# Oh My ZSH Plugins
+#
+if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]
+then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
+if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]
+then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
